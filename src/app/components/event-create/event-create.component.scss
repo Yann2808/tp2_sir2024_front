@@ -1,0 +1,84 @@
+:host {
+    display: block;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+  
+      label {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        color: #333;
+      }
+  
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+  
+        &:focus {
+          outline: none;
+          border-color: #3f51b5;
+          box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
+        }
+      }
+  
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+  
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+  
+        button,
+        p-button {
+          padding: 0.75rem 1.5rem;
+          font-size: 1rem;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+  
+        .save {
+          background-color: #3f51b5;
+          color: #fff;
+  
+          &:hover {
+            background-color: #303f9f;
+          }
+        }
+  
+        .cancel {
+          background-color: #f44336;
+          color: #fff;
+  
+          &:hover {
+            background-color: #d32f2f;
+          }
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,73 @@
+<h2>Créer un nouvel événement</h2>
+<form (ngSubmit)="createEvent()" class="p-fluid">
+  <div class="p-field">
+    <label for="nom">Nom :</label>
+    <input id="nom" type="text" pInputText [(ngModel)]="event.nom" name="nom" required />
+  </div>
+
+  <div class="p-field">
+    <label for="description">Description :</label>
+    <textarea id="description" pInputTextarea [(ngModel)]="event.description" name="description" rows="4"></textarea>
+  </div>
+
+  <div class="p-field">
+    <label for="date">Date :</label>
+    <p-datepicker 
+      [(ngModel)]="event.date" 
+      name="date" 
+      [showIcon]="true" 
+      dateFormat="dd/mm/yy" 
+      [readonlyInput]="true" 
+      [monthNavigator]="true" 
+      [yearNavigator]="true" 
+      yearRange="2020:2030" 
+      required 
+    />
+  </div>
+
+  <div class="p-field">
+    <label for="lieu">Lieu :</label>
+    <input id="lieu" type="text" pInputText [(ngModel)]="event.lieu" name="lieu" required />
+  </div>
+
+  <div class="p-field">
+    <label for="prix">Prix :</label>
+    <input 
+      id="prix" 
+      type="number" 
+      pInputNumber 
+      [(ngModel)]="event.prix" 
+      name="prix" 
+      [min]="0" 
+      required 
+    />
+  </div>
+
+  <div class="p-field">
+    <label for="placesDisponibles">Places disponibles :</label>
+    <input
+      id="placesDisponibles"
+      type="number"
+      pInputNumber
+      [(ngModel)]="event.placesDisponibles"
+      name="placesDisponibles"
+      [min]="1"
+      required
+    />
+  </div>
+
+  <div class="p-field">
+    <label for="organisateurId">Organisateur ID :</label>
+    <input
+      id="organisateurId"
+      type="number"
+      pInputNumber
+      [(ngModel)]="event.organisateurId"
+      name="organisateurId"
+      [min]="1"
+      required
+    />
+  </div>
+
+  <p-button label="Créer l'événement" type="submit" icon="pi pi-check"></p-button>
+</form>

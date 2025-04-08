@@ -1,0 +1,16 @@
+<h2>Acheter des tickets</h2>
+<form (ngSubmit)="purchaseTickets()">
+    <div>
+        <label>Événement ID :</label>
+        <input type="number" [(ngModel)]="evenementId" name="evenementId" required>
+    </div>
+    <div>
+        <label>Acheteur ID :</label>
+        <input type="number" [(ngModel)]="acheteurId" name="acheteurId" required>
+    </div>
+    <div>
+        <label>Nombre de tickets :</label>
+        <input type="number" [(ngModel)]="nbreTicket" name="nbreTicket" required>
+    </div>
+    <button type="submit">Acheter les tickets</button>
+</form>
