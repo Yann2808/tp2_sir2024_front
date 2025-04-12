@@ -1,5 +1,6 @@
 <h2>Créer un nouvel événement</h2>
 <form (ngSubmit)="createEvent()" class="p-fluid">
+
   <div class="p-field">
     <label for="nom">Nom :</label>
     <input id="nom" type="text" pInputText [(ngModel)]="event.nom" name="nom" required />
@@ -69,5 +70,6 @@
     />
   </div>
 
-  <p-button label="Créer l'événement" type="submit" icon="pi pi-check"></p-button>
+  <p-button label="Créer l'événement" type="submit" icon="pi pi-check" class="p-button font-bold" severity="primary" />
+
 </form>
