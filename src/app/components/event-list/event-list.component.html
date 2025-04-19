@@ -1,28 +1,26 @@
-<p-table
-    [value]="events"
-    stripedRows
-    [tableStyle]="{'min-width': '50rem'}">
-        <ng-template #header>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Lieu</th>
-                <th>Prix</th>
-                <th>Nombre de place (ticket mis en vente)</th>
-                <th>Place disponibles</th>
-                <th>Actions</th>
-            </tr>
-        </ng-template>
-        <ng-template #body let-event>
-            <tr>
-                <td>{{ event.nom }}</td>
-                <td>{{ event.description }}</td>
-                <td>{{ event.date }}</td>
-                <td>{{ event.lieu }}</td>
-                <td>{{ event.prix }}</td>
-                <td>{{ event.nom }}</td>
-                <td>{{ event.placesDisponibles }}</td>
-            </tr>
-        </ng-template>
-</p-table>
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+  
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+    {{ successMessage }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+    <div *ngFor="let event of events" class="col mb-4"> <!-- Ajout de 'mb-4' pour espacement vertical entre les cartes -->
+      <div class="card h-100 shadow-sm">
+        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Event image">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.nom }}</h5>
+          <p class="card-text">{{ event.description }}</p>
+          <p><strong>Date :</strong> {{ event.date | date:'short' }}</p>
+          <p><strong>Lieu :</strong> {{ event.lieu }}</p>
+          <p><strong>Prix :</strong> {{ event.prix | currency:'EUR' }}</p>
+          <p><strong>Places Disponibles :</strong> {{ event.placesDisponibles }}</p>
+        </div>
+        <div class="card-footer text-center">
+          <a href="#" class="btn btn-primary">Détails de l'événement</a>
+          <a href="#" class="btn btn-success">Réserver un billet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  

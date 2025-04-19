@@ -1,18 +1,27 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../services/event.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
-  imports: [TableModule],
+  imports: [
+    TableModule,
+    CommonModule
+  ],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.scss'
 })
 export class EventListComponent {
   events: Event[] = [];
+  successMessage: string | null = null;
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    this.successMessage = navigation?.extras.state?.['successMessage'] || null;
+  }
 
   ngOnInit() {
     // On appelle la méthode du service pour récupérer les évènements depuis l'API
@@ -26,5 +35,11 @@ export class EventListComponent {
 
       // possible d'ajouter une toast en rouge au lieu de la console
     });
+
+    if (this.successMessage) {
+      setTimeout(() => {
+        this.successMessage = null;
+      }, 4000);
+    }
   }
 }

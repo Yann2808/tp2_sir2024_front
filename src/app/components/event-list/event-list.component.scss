@@ -1,0 +1,52 @@
+/* Ajout de marges et d'espacements pour un design plus élégant */
+
+/* Espacement autour des cartes */
+.card {
+    margin-bottom: 30px;  // Espacement sous chaque carte
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);  // Effet de survol
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);  // Ombre plus prononcée au survol
+  }
+  
+  /* Ajuster la taille des images pour être plus belles et cohérentes */
+  .card-img-top {
+    object-fit: cover;
+    height: 200px;
+    border-top-left-radius: 8px; /* Arrondi des coins */
+    border-top-right-radius: 8px; /* Arrondi des coins */
+  }
+  
+  /* Espacement et style du corps de la carte */
+  .card-body {
+    padding: 1.25rem;
+    background-color: #fafafa;
+    color: #333;
+  }
+  
+  /* Style du footer de la carte avec espacement */
+  .card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    padding: 1rem;
+  }
+  
+  .card-footer a {
+    margin: 5px;
+  }
+  
+  /* Ajout d'un espacement général entre les cartes */
+  .row {
+    margin-top: 20px;  // Espacement entre le haut de la section et les cartes
+    margin-bottom: 20px;  // Espacement sous la ligne des cartes
+  }
+  
+  /* Marges supplémentaires pour les colonnes */
+  .col {
+    margin-bottom: 30px;  // Espacement vertical entre les cartes
+  }
+  
