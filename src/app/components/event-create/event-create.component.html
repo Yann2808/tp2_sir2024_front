@@ -1,75 +1,102 @@
 <h2>Créer un nouvel événement</h2>
-<form (ngSubmit)="createEvent()" class="p-fluid">
+<form (ngSubmit)="createEvent()" class="p-4">
+    <!-- Nom -->
+    <div class="mb-3">
+        <label for="nom" class="form-label">Nom :</label>
+        <input id="nom" type="text" class="form-control" [(ngModel)]="event.nom" name="nom" required #nom="ngModel" />
+        <div *ngIf="submitted && nom.invalid" class="text-danger">
+            Le nom est requis.
+        </div>
+    </div>
 
-  <div class="p-field">
-    <label for="nom">Nom :</label>
-    <input id="nom" type="text" pInputText [(ngModel)]="event.nom" name="nom" required />
-  </div>
+    <!-- Description -->
+    <div class="mb-3">
+        <label for="description" class="form-label">Description :</label>
+        <textarea id="description" class="form-control" [(ngModel)]="event.description" name="description" rows="4"></textarea>
+    </div>
 
-  <div class="p-field">
-    <label for="description">Description :</label>
-    <textarea id="description" pInputTextarea [(ngModel)]="event.description" name="description" rows="4"></textarea>
-  </div>
+    <!-- Date -->
+    <div class="mb-3">
+        <label for="date" class="form-label">Date et heure :</label>
+        <input 
+            id="date" 
+            type="datetime-local" 
+            class="form-control" 
+            [(ngModel)]="event.date" 
+            name="date" 
+            required 
+            #date="ngModel"
+        />
+        <div *ngIf="submitted && date.invalid" class="text-danger">
+            La date et l'heure sont requises.
+        </div>
+    </div>
 
-  <div class="p-field">
-    <label for="date">Date :</label>
-    <p-datepicker 
-      [(ngModel)]="event.date" 
-      name="date" 
-      [showIcon]="true" 
-      dateFormat="dd/mm/yy" 
-      [readonlyInput]="true" 
-      [monthNavigator]="true" 
-      [yearNavigator]="true" 
-      yearRange="2020:2030" 
-      required 
-    />
-  </div>
+    <!-- Lieu -->
+    <div class="mb-3">
+        <label for="lieu" class="form-label">Lieu :</label>
+        <input id="lieu" type="text" class="form-control" [(ngModel)]="event.lieu" name="lieu" required #lieu="ngModel" />
+        <div *ngIf="submitted && lieu.invalid" class="text-danger">
+            Le lieu est requis.
+        </div>
+    </div>
 
-  <div class="p-field">
-    <label for="lieu">Lieu :</label>
-    <input id="lieu" type="text" pInputText [(ngModel)]="event.lieu" name="lieu" required />
-  </div>
+    <!-- Prix -->
+    <div class="mb-3">
+        <label for="prix" class="form-label">Prix :</label>
+        <input 
+            id="prix" 
+            type="number" 
+            class="form-control" 
+            [(ngModel)]="event.prix" 
+            name="prix" 
+            min="0" 
+            required 
+            #prix="ngModel"
+        />
+        <div *ngIf="submitted && prix.invalid" class="text-danger">
+            Le prix est requis et doit être supérieur ou égal à 0.
+        </div>
+    </div>
 
-  <div class="p-field">
-    <label for="prix">Prix :</label>
-    <input 
-      id="prix" 
-      type="number" 
-      pInputNumber 
-      [(ngModel)]="event.prix" 
-      name="prix" 
-      [min]="0" 
-      required 
-    />
-  </div>
+    <!-- Places disponibles -->
+    <div class="mb-3">
+        <label for="placesDisponibles" class="form-label">Places disponibles :</label>
+        <input
+            id="placesDisponibles"
+            type="number"
+            class="form-control"
+            [(ngModel)]="event.placesDisponibles"
+            name="placesDisponibles"
+            min="1"
+            required
+            #placesDisponibles="ngModel"
+        />
+        <div *ngIf="submitted && placesDisponibles.invalid" class="text-danger">
+            Les places disponibles sont requises et doivent être supérieures à 0.
+        </div>
+    </div>
 
-  <div class="p-field">
-    <label for="placesDisponibles">Places disponibles :</label>
-    <input
-      id="placesDisponibles"
-      type="number"
-      pInputNumber
-      [(ngModel)]="event.placesDisponibles"
-      name="placesDisponibles"
-      [min]="1"
-      required
-    />
-  </div>
+    <!-- Organisateur ID -->
+    <div class="mb-3">
+        <label for="organisateurId" class="form-label">Organisateur ID :</label>
+        <input
+            id="organisateurId"
+            type="number"
+            class="form-control"
+            [(ngModel)]="event.organisateurId"
+            name="organisateurId"
+            min="1"
+            required
+            #organisateurId="ngModel"
+        />
+        <div *ngIf="submitted && organisateurId.invalid" class="text-danger">
+            L’ID de l’organisateur est requis et doit être supérieur à 0.
+        </div>
+    </div>
 
-  <div class="p-field">
-    <label for="organisateurId">Organisateur ID :</label>
-    <input
-      id="organisateurId"
-      type="number"
-      pInputNumber
-      [(ngModel)]="event.organisateurId"
-      name="organisateurId"
-      [min]="1"
-      required
-    />
-  </div>
-
-  <p-button label="Créer l'événement" type="submit" icon="pi pi-check" class="p-button font-bold" severity="primary" />
-
+    <!-- Bouton de soumission -->
+    <button type="submit" class="btn btn-primary">
+        Créer l'événement
+    </button>
 </form>
