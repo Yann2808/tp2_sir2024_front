@@ -1,0 +1,28 @@
+@use '../styles.scss' as v;
+
+.nav-container {
+  padding: 10px;
+  background-color: v.$background-light;
+  border-bottom: 1px solid v.$border-color;
+
+  nav {
+    text-align: center;
+
+    .nav-link {
+      margin: 0 10px;
+      text-decoration: none;
+      color: v.$primary-color;
+      font-weight: bold;
+
+      &:hover {
+        color: v.$primary-hover;
+        text-decoration: underline;
+      }
+
+      &.active {
+        color: v.$primary-hover;
+        text-decoration: underline;
+      }
+    }
+  }
+}
