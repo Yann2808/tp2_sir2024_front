@@ -1,0 +1,77 @@
+@use '../../../styles.scss' as v;
+
+// Style du formulaire de connexion
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid v.$border-color;
+  border-radius: 5px;
+  background-color: v.$background-light;
+
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid v.$border-color;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: v.$primary-color;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: v.$primary-hover;
+    }
+  }
+}
+
+// Style des messages
+.message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+
+  &.error {
+    background-color: v.$error-bg;
+    color: v.$error-text;
+  }
+
+  &.success {
+    background-color: v.$success-bg;
+    color: v.$success-text;
+  }
+}
+
+// Style du lien d'inscription
+.register-link {
+  text-align: center;
+  margin-top: 15px;
+
+  a {
+    color: v.$primary-color;
+    text-decoration: none;
+
+    &:hover {
+      color: v.$primary-hover;
+      text-decoration: underline;
+    }
+  }
+}
