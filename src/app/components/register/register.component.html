@@ -1,0 +1,85 @@
+<h2>Inscription</h2>
+
+<form (ngSubmit)="register()" class="register-form">
+    <!-- Sélecteur pour le type d'utilisateur -->
+    <div class="form-group">
+        <label for="type">Type d'utilisateur :</label>
+        <select id="type" [(ngModel)]="user.type" name="type" (change)="onTypeChange()" required>
+            <option value="ORGANISATEUR">Organisateur</option>
+            <option value="UTILISATEUR_PARTICULIER">Utilisateur Particulier</option>
+        </select>
+    </div>
+
+    <!-- Champs communs à tous les utilisateurs -->
+    <div class="form-group">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" [(ngModel)]="user.username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" [(ngModel)]="user.password" name="password" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email :</label>
+        <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+    </div>
+
+    <!-- Champs spécifiques à Organisateur -->
+    <div *ngIf="user.type === 'ORGANISATEUR'" class="specific-fields">
+        <h3>Informations Organisateur</h3>
+        <div class="form-group">
+            <label for="nomEntreprise">Nom de l'entreprise :</label>
+            <input type="text" id="nomEntreprise" [(ngModel)]="user.nomEntreprise" name="nomEntreprise" required>
+        </div>
+        <div class="form-group">
+            <label for="siret">SIRET :</label>
+            <input type="text" id="siret" [(ngModel)]="user.siret" name="siret" required>
+        </div>
+    </div>
+
+    <!-- Champs spécifiques à UtilisateurParticulier -->
+    <div *ngIf="user.type === 'UTILISATEUR_PARTICULIER'" class="specific-fields">
+        <h3>Informations Utilisateur Particulier</h3>
+        <div class="form-group">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" [(ngModel)]="user.nom" name="nom" required>
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" [(ngModel)]="user.prenom" name="prenom" required>
+        </div>
+        <div class="form-group">
+            <label for="adresse">Adresse :</label>
+            <input type="text" id="adresse" [(ngModel)]="user.adresse" name="adresse" required>
+        </div>
+        <div class="form-group">
+            <label for="codePostal">Code Postal :</label>
+            <input type="text" id="codePostal" [(ngModel)]="user.codePostal" name="codePostal" required>
+        </div>
+        <div class="form-group">
+            <label for="ville">Ville :</label>
+            <input type="text" id="ville" [(ngModel)]="user.ville" name="ville" required>
+        </div>
+        <div class="form-group">
+            <label for="telephone">Téléphone :</label>
+            <input type="text" id="telephone" [(ngModel)]="user.telephone" name="telephone" required>
+        </div>
+        <div class="form-group">
+            <label for="dateNaissance">Date de naissance (YYYY-MM-DD) :</label>
+            <input type="text" id="dateNaissance" [(ngModel)]="user.dateNaissance" name="dateNaissance" required>
+        </div>
+    </div>
+
+    <button type="submit">S'inscrire</button>
+</form>
+
+<div *ngIf="errorMessage" class="message error">
+    {{ errorMessage }}
+</div>
+<div *ngIf="successMessage" class="message success">
+    {{ successMessage }}
+</div>
+
+<p class="login-link">
+    Déjà inscrit ? <a routerLink="/login">Se connecter</a>
+</p>
