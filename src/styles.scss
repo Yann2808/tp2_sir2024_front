@@ -1,1 +1,12 @@
-@import 'bootstrap/scss/bootstrap';
+@use 'bootstrap/scss/bootstrap'; // @import est déprécié
+
+// Variables globales pour les couleurs et les styles
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$border-color: #ccc;
+$background-light: #f9f9f9;
+$background-white: #fff;
+$success-bg: #d4edda;
+$success-text: #155724;
+$error-bg: #f8d7da;
+$error-text: #721c24;
