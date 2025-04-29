@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importer CommonModule pour *ngIf
 import { FormsModule } from '@angular/forms'; // Importer FormsModule pour ngModel
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +31,7 @@ export class RegisterComponent {
   errorMessage: string | null = null;
   successMessage: string | null = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   register(): void {
     this.errorMessage = null;
@@ -60,6 +61,10 @@ export class RegisterComponent {
     this.authService.register(userData).subscribe({
       next: () => {
         this.successMessage = 'Inscription réussie ! Vous pouvez maintenant vous connecter.';
+
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 3000);
       },
       error: (err) => {
         this.errorMessage = err.message;
