@@ -15,5 +15,5 @@ export const routes: Routes = [
     { path: 'purchase-tickets', component: TicketPurchaseComponent },
     { path: 'events', component: EventListComponent },
     { path: 'tickets', component:TicketListComponent },
-    { path: '', component:HomeComponent }
+    { path: 'home', component:HomeComponent }
 ];
