@@ -77,24 +77,6 @@
         </div>
     </div>
 
-    <!-- Organisateur ID -->
-    <div class="mb-3">
-        <label for="organisateurId" class="form-label">Organisateur ID :</label>
-        <input
-            id="organisateurId"
-            type="number"
-            class="form-control"
-            [(ngModel)]="event.organisateurId"
-            name="organisateurId"
-            min="1"
-            required
-            #organisateurId="ngModel"
-        />
-        <div *ngIf="submitted && organisateurId.invalid" class="text-danger">
-            L’ID de l’organisateur est requis et doit être supérieur à 0.
-        </div>
-    </div>
-
     <!-- Bouton de soumission -->
     <button type="submit" class="btn btn-primary">
         Créer l'événement

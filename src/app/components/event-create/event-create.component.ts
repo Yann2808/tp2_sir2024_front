@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
     selector: 'app-event-create',
@@ -23,6 +24,7 @@ import { Router } from '@angular/router';
     templateUrl: './event-create.component.html',
     styleUrls: ['./event-create.component.scss']
 })
+
 export class EventCreateComponent {
     event: Event = {
         nom: '',
@@ -37,8 +39,17 @@ export class EventCreateComponent {
 
     constructor(
         private eventService: EventService, 
-        private router: Router
+        private router: Router,
+        private authService: AuthService
     ) {}
+
+    ngOnInit() {
+        const user = this.authService.getCurrentUser();
+        // Assurez-vous que l'utilisateur existe et a un id
+        if (user && user.id) {
+            this.event.organisateurId = user.id; // Utilisation de l'ID de l'utilisateur connecté
+        }
+    }
 
     createEvent() {
         this.submitted = true;
@@ -49,12 +60,6 @@ export class EventCreateComponent {
 
         this.eventService.createEvent(eventToSend).subscribe({
             next: (response) => {
-                //this.router.navigate(['/events']).then(() => {
-                //   console.log('Événement créé avec succès', response);
-                //    alert('Événement créé avec succès !');
-                //    this.submitted = false;
-                //});
-
                 this.router.navigate(['/events'], {
                     state: { successMessage: 'Événement créé avec succès 🎉' }
                 });
