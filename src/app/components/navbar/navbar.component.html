@@ -10,38 +10,46 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Ticket App</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/">Accueil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/events">Événements</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/contact">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/profil">Profil</a>
-              </li>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Ticket App</a><!--Utilise routerLink pour le logo aussi -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a><!--exact: true pour éviter que "Accueil" soit actif sur toutes les routes -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/events" routerLinkActive="active">Événements</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+          </li>
+         <!--Afficher "Profil" SEULEMENT si l'utilisateur est connecté -->
+          <li class="nav-item" *ngIf="authService.isLoggedIn()">
+            <a class="nav-link" routerLink="/profil" routerLinkActive="active">Profil</a>
+          </li>
 
-              <!-- Ne dois s'afficher que suivant des conditions -->
-               <li>
-                <a routerLink="/register" routerLinkActive="active" class="nav-link">Inscription</a>
-               </li>
-               <li>
-                <a routerLink="/login" routerLinkActive="active" class="nav-link">Connexion</a>
-               </li>
-            </ul>
-          </div>
-        </div>
-      </nav>      
+         <!--Ces liens s'affichent SEULEMENT si l'utilisateur N'EST PAS connecté -->
+           <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+            <a routerLink="/register" routerLinkActive="active" class="nav-link">Inscription</a>
+           </li>
+           <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+            <a routerLink="/login" routerLinkActive="active" class="nav-link">Connexion</a>
+           </li>
+
+          <!--Ce bouton s'affiche SEULEMENT si l'utilisateur EST connecté -->
+           <li class="nav-item" *ngIf="authService.isLoggedIn()">
+            <!--On utilise un bouton pour l'action, mais un lien stylisé en bouton ferait aussi l'affaire -->
+             <button class="nav-link btn btn-link" (click)="logout()">Déconnexion</button>
+            <!--Note: btn-link et nav-link sont des classes Bootstrap pour styliser un bouton comme un lien de nav -->
+           </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <!-- Fichier JS de Popper (nécessaire pour Bootstrap) -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
