@@ -5,22 +5,35 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 
-    <div *ngFor="let event of events" class="col mb-4"> <!-- Ajout de 'mb-4' pour espacement vertical entre les cartes -->
-      <div class="card h-100 shadow-sm">
-        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Event image">
-        <div class="card-body">
-          <h5 class="card-title">{{ event.nom }}</h5>
-          <p class="card-text">{{ event.description }}</p>
-          <p><strong>Date :</strong> {{ event.date | date:'short' }}</p>
-          <p><strong>Lieu :</strong> {{ event.lieu }}</p>
-          <p><strong>Prix :</strong> {{ event.prix | currency:'EUR' }}</p>
-          <p><strong>Places Disponibles :</strong> {{ event.placesDisponibles }}</p>
-        </div>
-        <div class="card-footer text-center">
-          <a href="#" class="btn btn-primary">Détails de l'événement</a>
-          <a href="#" class="btn btn-success">Réserver un billet</a>
-        </div>
+  <div class="mt-4 d-flex justify-content-center gap-3">
+    <button class="btn btn-primary btn-lg" (click)="navigateTo('/home')">
+      Retour vers l'accueil
+    </button>
+    <button class="btn btn-outline-success btn-lg" (click)="navigateTo('/create-event')">
+      Créer un événement
+    </button>
+  </div>
+
+  <div *ngIf="events.length === 0" class="text-center mt-4">
+    <p>Aucun événement n'est disponible pour le moment.</p>
+  </div>
+  
+  <div *ngFor="let event of events" class="col mb-4"> <!-- Ajout de 'mb-4' pour espacement vertical entre les cartes -->
+    <div class="card h-100 shadow-sm">
+      <img src="https://via.placeholder.com/150" class="card-img-top" alt="Event image">
+      <div class="card-body">
+        <h5 class="card-title">{{ event.nom }}</h5>
+        <p class="card-text">{{ event.description }}</p>
+        <p><strong>Date :</strong> {{ event.date | date:'short' }}</p>
+        <p><strong>Lieu :</strong> {{ event.lieu }}</p>
+        <p><strong>Prix :</strong> {{ event.prix | currency:'EUR' }}</p>
+        <p><strong>Places Disponibles :</strong> {{ event.placesDisponibles }}</p>
+      </div>
+      <div class="card-footer text-center">
+        <a href="#" class="btn btn-primary">Détails de l'événement</a>
+        <a href="#" class="btn btn-success">Réserver un billet</a>
       </div>
     </div>
   </div>
+</div>
   

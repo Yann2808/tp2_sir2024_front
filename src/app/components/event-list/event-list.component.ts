@@ -4,6 +4,7 @@ import { TableModule } from 'primeng/table';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-event-list',
@@ -18,28 +19,49 @@ export class EventListComponent {
   events: Event[] = [];
   successMessage: string | null = null;
 
-  constructor(private eventService: EventService, private router: Router) {
+  constructor(private eventService: EventService, private router: Router, private authService: AuthService) {
     const navigation = this.router.getCurrentNavigation();
     this.successMessage = navigation?.extras.state?.['successMessage'] || null;
   }
 
+  navigateTo(path: string) {
+    this.router.navigate([path]);
+  }
+
   ngOnInit() {
-    // On appelle la méthode du service pour récupérer les évènements depuis l'API
-    this.eventService.getAllEvents().subscribe ({
-      next: (data) => {
-        this.events = data;
-      },
-      error: (err) => {
-        console.error('Erreur lors de la récupération des évènelents',err);
-      }
-
-      // possible d'ajouter une toast en rouge au lieu de la console
-    });
-
+    const user = this.authService.getCurrentUser();
+  
+    if (user) {
+      const headers = this.authService.getAuthHeaders();
+      this.loadEvents(headers);
+    } else {
+      // Attendre un court instant que le localStorage charge
+      setTimeout(() => {
+        const delayedUser = this.authService.getCurrentUser();
+        if (delayedUser) {
+          const headers = this.authService.getAuthHeaders();
+          this.loadEvents(headers);
+        } else {
+          console.error("Utilisateur non connecté ou headers non disponibles.");
+        }
+      }, 300); // tu peux adapter ce délai
+    }
+  
     if (this.successMessage) {
       setTimeout(() => {
         this.successMessage = null;
       }, 4000);
     }
+  }
+  
+  private loadEvents(headers: any) {
+    this.eventService.getAllEvents(headers).subscribe({
+      next: (data) => {
+        this.events = data;
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des événements', err);
+      }
+    });
   }
 }
