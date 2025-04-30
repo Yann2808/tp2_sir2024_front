@@ -1,16 +1,34 @@
-<h2>Acheter des tickets</h2>
-<form (ngSubmit)="purchaseTickets()">
-    <div>
-        <label>Événement ID :</label>
-        <input type="number" [(ngModel)]="evenementId" name="evenementId" required>
-    </div>
-    <div>
-        <label>Acheteur ID :</label>
-        <input type="number" [(ngModel)]="acheteurId" name="acheteurId" required>
-    </div>
-    <div>
-        <label>Nombre de tickets :</label>
-        <input type="number" [(ngModel)]="nbreTicket" name="nbreTicket" required>
-    </div>
-    <button type="submit">Acheter les tickets</button>
-</form>
+<div *ngIf="user && event" class="container mt-4">
+    <h2 class="text-center">Réservation de ticket pour : {{ event.name }}</h2>
+    <p class="text-center">{{ event.description }}</p>
+    <p class="text-center"><strong>Tickets disponibles :</strong> {{ availableTickets }}</p>
+  
+    <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" class="bg-light p-4 rounded shadow-sm">
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Quantité de tickets</label>
+        <input formControlName="quantity" id="quantity" type="number" class="form-control" 
+               min="1" [max]="availableTickets" required />
+        <div *ngIf="ticketForm.get('quantity')?.invalid && ticketForm.get('quantity')?.touched" 
+             class="text-danger">
+          <small>La quantité doit être supérieure à 0 et ne pas excéder les tickets disponibles.</small>
+        </div>
+      </div>
+  
+      <button [disabled]="ticketForm.invalid || isLoading" class="btn btn-primary w-100">
+        {{ isLoading ? 'Réservation en cours...' : 'Réserver' }}
+      </button>
+            
+    </form>
+  </div>
+  
+  <!-- Affiche le message si l'utilisateur n'est pas connecté -->
+  <div *ngIf="!user" class="alert alert-warning mt-4" role="alert">
+    Vous devez être connecté pour effectuer une réservation.
+  </div>
+  
+  <!-- Affiche un message si l'utilisateur n'a pas le bon rôle -->
+  <div *ngIf="user && user.role !== 'UTILISATEUR_PARTICULIER'" class="alert alert-danger mt-4" role="alert">
+    Seuls les utilisateurs particuliers peuvent acheter des tickets.
+    <a [routerLink]="['/events']" class="btn btn-link">Retour aux événements</a>
+  </div>
+  
