@@ -1,12 +1,56 @@
-h1 {
-    color: #0d6efd;
+//h1 {
+ //   color: #0d6efd;
+  //}
+  
+  //p {
+    //font-size: 1.2rem;
+  //}
+  
+  //button {
+    //min-width: 180px;
+  //}
+
+  .home-background {
+    height: 100vh;
+    background-image: url('../../../assets/img1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
   }
   
-  p {
-    font-size: 1.2rem;
+  /* Optionnel : overlay sombre */
+  .home-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
   }
   
-  button {
-    min-width: 180px;
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  :host {
+    display: block;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    margin: 0;
+    padding: 0;
   }
   
