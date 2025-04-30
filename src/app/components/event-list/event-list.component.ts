@@ -4,13 +4,15 @@ import { TableModule } from 'primeng/table';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-event-list',
   imports: [
     TableModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.scss'

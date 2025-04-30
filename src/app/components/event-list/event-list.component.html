@@ -35,7 +35,7 @@
           <p><strong>Places Disponibles :</strong> {{ event.placesDisponibles }}</p>
         </div>
         <div class="card-footer text-center">
-          <a href="#" class="btn btn-primary">Détails de l'événement</a>
+          <a [routerLink]="['/events', event.id]" class="btn btn-primary">Détails de l'événement</a>
           <a href="#" class="btn btn-success">Réserver un billet</a>
         </div>
       </div>
@@ -62,7 +62,7 @@
           <p><strong>Places Disponibles :</strong> {{ event.placesDisponibles }}</p>
         </div>
         <div class="card-footer text-center">
-          <a href="#" class="btn btn-primary">Détails de l'événement</a>
+          <a [routerLink]="['/events', event.id]" class="btn btn-primary">Détails de l'événement</a>
           <a href="#" class="btn btn-success">Réserver un billet</a>
         </div>
       </div>

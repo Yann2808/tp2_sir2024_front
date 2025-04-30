@@ -1,1 +1,37 @@
-<p>event-details works!</p>
+<div class="container mt-5" *ngIf="event">
+    <div class="card shadow">
+      <img src="../../../assets/img.jpg" class="card-img-top" alt="Image événement">
+      <div class="card-body">
+        <h3 class="card-title">{{ event.nom }}</h3>
+        <p class="card-text">{{ event.description }}</p>
+  
+        <ul class="list-group list-group-flush my-4">
+          <li class="list-group-item">
+            <strong>Date :</strong> {{ event.date | date: 'fullDate' }}
+          </li>
+          <li class="list-group-item">
+            <strong>Lieu :</strong> {{ event.lieu }}
+          </li>
+          <li class="list-group-item">
+            <strong>Prix :</strong> {{ event.prix | currency: 'EUR' }}
+          </li>
+          <li class="list-group-item">
+            <strong>Places disponibles :</strong> {{ event.placesDisponibles }}
+          </li>
+        </ul>
+  
+        <div class="d-flex justify-content-between">
+          <a routerLink="/events" class="btn btn-secondary">Retour</a>
+          <button [routerLink]="['/purchase-tickets', event.id]" class="btn btn-success">
+            Réserver
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!event" class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p>Chargement...</p>
+  </div>
+  

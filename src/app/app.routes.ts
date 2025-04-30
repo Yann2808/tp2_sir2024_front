@@ -6,14 +6,16 @@ import { TicketPurchaseComponent } from './components/ticket-purchase/ticket-pur
 import { EventListComponent } from './components/event-list/event-list.component';
 import { TicketListComponent } from './components/ticket-list/ticket-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'create-event', component: EventCreateComponent },
-    { path: 'purchase-tickets', component: TicketPurchaseComponent },
+    { path: 'purchase-tickets/:id', component: TicketPurchaseComponent },
     { path: 'events', component: EventListComponent },
+    { path: 'events/:id', component: EventDetailsComponent},
     { path: 'tickets', component:TicketListComponent },
     { path: 'home', component:HomeComponent }
 ];

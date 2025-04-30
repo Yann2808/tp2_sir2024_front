@@ -29,4 +29,10 @@ export class EventService {
     getAllEvents(headers: HttpHeaders): Observable<Event[]> {
         return this.http.get<Event[]>(`${this.apiUrl}/all`, { headers });
     }
+
+    getEventById(id: string | number): Observable<any> {
+        const headers = this.authService.getAuthHeaders();
+        
+        return this.http.get(`${this.apiUrl}/${id}`, { headers });
+    }
 }
