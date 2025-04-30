@@ -17,6 +17,9 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class EventListComponent {
   events: Event[] = [];
+  userEvents: Event[] = [];
+  otherEvents: Event[] = [];
+
   successMessage: string | null = null;
 
   constructor(private eventService: EventService, private router: Router, private authService: AuthService) {
@@ -58,6 +61,12 @@ export class EventListComponent {
     this.eventService.getAllEvents(headers).subscribe({
       next: (data) => {
         this.events = data;
+
+        const currentUser = this.authService.getCurrentUser();
+        if (currentUser) {
+          this.userEvents = data.filter(event => event.organisateurId === currentUser.id);
+          this.otherEvents = data.filter(event => event.organisateurId !== currentUser.id);
+        }
       },
       error: (err) => {
         console.error('Erreur lors de la récupération des événements', err);
