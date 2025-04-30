@@ -7,4 +7,5 @@ export interface Event {
     prix: number;
     placesDisponibles: number;
     organisateurId: number;
+    imageUrl?: string;
 }
